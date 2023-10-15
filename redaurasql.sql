@@ -4,9 +4,7 @@ CREATE database redauravibes;
 -- Selecting Database to use.
 USE redauravibes;
 
--- Creating Inventory table which has Product_Id as Primary Key, 
--- Crystal Name, Quantity, Price, Description, 
--- Total $ in Stock
+-- Creating Inventory table which has Product_Id as Primary Key, Crystal Name, Quantity, Price, Description, Total $ in Stock
 CREATE TABLE inventory
 (product_id INT IDENTITY(1,1) PRIMARY KEY,
 crystal_name NVARCHAR(50) NOT NULL,
@@ -15,10 +13,11 @@ price DECIMAL(10,2),
 description NVARCHAR(50) NULL,
 total_amount_in_stock DECIMAL(10,2));
 
+-- Dropping table if table needs to be remade.
 DROP TABLE inventory;
 
 
--- Inserting data into tables
+-- Inserting data into Inventory table.
 INSERT INTO inventory(crystal_name,quantity,price,description,total_amount_in_stock)
 VALUES('Rose Quartz','1','11.00','Tower','11.00'),
 	('Obsidian','1','8.00','Tower','8.00'),
@@ -50,7 +49,6 @@ FROM inventory
 WHERE crystal_name LIKE 'Mo%';
 
 --Adding new inventory to table
-
 INSERT INTO inventory(crystal_name,quantity,price,description,total_amount_in_stock)
 VALUES('Rose Quartz','3','3.00','Mini Sphere','9.00'),
 	('Sphalerite','1','22.00','Tower','22.00'),
@@ -62,7 +60,7 @@ VALUES('Rose Quartz','3','3.00','Mini Sphere','9.00'),
 	('Amazonite','10','3.00','Mini Sphere','30.00'),
 	('Larvikite','1','12.00','Tower','12.00');
 
-	-- Checking to see if we have everything added to table
+ -- Checking to see if we have everything added to table
 	SELECT *
 	from inventory;
  
@@ -76,8 +74,8 @@ VALUES('Rose Quartz','3','3.00','Mini Sphere','9.00'),
 	FROM inventory
 	WHERE quantity > 5; 
 
--- Selecting columns crystal name, quantity and price. Multiplying the quantity and price to get the total for that crystal.
-	SELECT crystal_name AS crystal, quantity,price,
+-- Selecting columns crystal name, quantity and price. Multiplying the quantity and price to get the total revenue for that crystal.
+	SELECT crystal_name AS crystal, quantity, price,
 	quantity*price AS total
 	FROM inventory
 	
